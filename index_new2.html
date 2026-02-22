@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbilityJobs - Inclusive Job Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar with Glassmorphism -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-universal-access"></i> AbilityJobs
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#jobs">Find Jobs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-auth">
+            <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon" id="darkModeIcon"></i>
+            </button>
+            <button class="btn-auth btn-login" id="loginBtn">Login</button>
+            <button class="btn-auth btn-signup" id="signupBtn">Sign Up</button>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="modal-close" id="loginClose">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-user-circle"></i>
+                <h2>Welcome Back</h2>
+                <p>Login to access your account</p>
+            </div>
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-auth-submit">Login</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <a href="#" id="switchToSignup">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="modal-close" id="signupClose">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-user-plus"></i>
+                <h2>Create Account</h2>
+                <p>Join AbilityJobs today</p>
+            </div>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="userType"><i class="fas fa-briefcase"></i> I am a</label>
+                    <select id="userType" required>
+                        <option value="" disabled selected>Select account type</option>
+                        <option value="jobseeker">Job Seeker</option>
+                        <option value="employer">Employer</option>
+                    </select>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                    </label>
+                </div>
+                <button type="submit" class="btn-auth-submit">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Two-Column Layout -->
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Empowering</span> People with Disabilities to Find <span class="gradient-text">Meaningful Work</span>
+                </h1>
+                <p class="hero-subtitle">Breaking barriers and creating opportunities. We connect talented individuals with inclusive employers who value diversity and accessibility.</p>
+                <a href="#jobs" class="btn-search-jobs">
+                    <i class="fas fa-search"></i> Search Jobs
+                </a>
+            </div>
+            <div class="hero-visual">
+                <svg class="accessibility-illustration" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="175" r="150" fill="url(#gradientBg)" opacity="0.1"/>
+                    <g transform="translate(100, 80)">
+                        <circle cx="100" cy="40" r="30" fill="#1a1a2e"/>
+                        <path d="M70 75 Q100 70 130 75 L140 150 L120 150 L115 90 L100 90 L85 90 L80 150 L60 150 Z" fill="#1a1a2e"/>
+                        <circle cx="100" cy="170" r="45" fill="none" stroke="#27ae60" stroke-width="4"/>
+                        <circle cx="100" cy="170" r="35" fill="none" stroke="#27ae60" stroke-width="2"/>
+                        <circle cx="100" cy="170" r="8" fill="#27ae60"/>
+                        <line x1="100" y1="130" x2="100" y2="210" stroke="#27ae60" stroke-width="2"/>
+                        <line x1="60" y1="170" x2="140" y2="170" stroke="#27ae60" stroke-width="2"/>
+                        <line x1="72" y1="142" x2="128" y2="198" stroke="#27ae60" stroke-width="2"/>
+                        <line x1="72" y1="198" x2="128" y2="142" stroke="#27ae60" stroke-width="2"/>
+                        <path d="M125 85 Q145 100 135 120" fill="none" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/>
+                    </g>
+                    <g class="floating-element" style="animation-delay: 0s;">
+                        <circle cx="50" cy="100" r="20" fill="#27ae60" opacity="0.2"/>
+                    </g>
+                    <g class="floating-element" style="animation-delay: 1s;">
+                        <circle cx="350" cy="80" r="20" fill="#667eea" opacity="0.2"/>
+                    </g>
+                    <g class="floating-element" style="animation-delay: 2s;">
+                        <circle cx="330" cy="250" r="20" fill="#e67e22" opacity="0.2"/>
+                    </g>
+                    <g class="floating-element" style="animation-delay: 1.5s;">
+                        <circle cx="70" cy="260" r="20" fill="#764ba2" opacity="0.2"/>
+                    </g>
+                    <defs>
+                        <linearGradient id="gradientBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#27ae60"/>
+                            <stop offset="100%" style="stop-color:#667eea"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="trusted-by">
+        <p class="trusted-by-title">Trusted by Leading Companies</p>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="marquee-logo"><span>Company A</span></div>
+                <div class="marquee-logo"><span>Company B</span></div>
+                <div class="marquee-logo"><span>Company C</span></div>
+                <div class="marquee-logo"><span>Company D</span></div>
+                <div class="marquee-logo"><span>Company E</span></div>
+                <div class="marquee-logo"><span>Company F</span></div>
+                <div class="marquee-logo"><span>Company A</span></div>
+                <div class="marquee-logo"><span>Company B</span></div>
+                <div class="marquee-logo"><span>Company C</span></div>
+                <div class="marquee-logo"><span>Company D</span></div>
+                <div class="marquee-logo"><span>Company E</span></div>
+                <div class="marquee-logo"><span>Company F</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>AbilityJobs is dedicated to bridging the gap between talented individuals with disabilities and inclusive employers. We believe that everyone deserves equal opportunities in the workforce.</p>
+                    <p>Our platform uses smart technology to adapt to your specific needs, whether you require voice assistance, screen reader compatibility, or wheelchair-accessible job listings.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <i class="fas fa-users"></i>
+                        <h3>10,000+</h3>
+                        <p>Job Seekers</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>5,000+</h3>
+                        <p>Jobs Posted</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-building"></i>
+                        <h3>1,200+</h3>
+                        <p>Partner Companies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Testimonial Section -->
+    <section id="testimonials" class="section testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            
+            <div class="testimonials-wrapper">
+                <button class="testimonial-nav prev-btn" id="prevBtn" aria-label="Previous testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-card active">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"After losing my sight, I thought I'd never work again. AbilityJobs connected me with a company that valued my skills. Now I'm a successful data analyst working remotely!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M." class="author-photo">
+                            <div class="author-info">
+                                <h4>Sarah Mitchell</h4>
+                                <p>Data Analyst at TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"The voice search feature changed my life. I can now browse jobs independently without any assistance. Found my dream job within a week!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James K." class="author-photo">
+                            <div class="author-info">
+                                <h4>James Kimani</h4>
+                                <p>Customer Support at ServiceHub</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"As someone with a physical disability, finding an accessible workplace was challenging. AbilityJobs made it easy - now I'm thriving as a content writer!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria L." class="author-photo">
+                            <div class="author-info">
+                                <h4>Maria Lopez</h4>
+                                <p>Content Writer at MediaHouse</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"The accessibility testing job I found here perfects my skills. I help make the web better for everyone while building a fulfilling career."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David R." class="author-photo">
+                            <div class="author-info">
+                                <h4>David Rodriguez</h4>
+                                <p>Accessibility Tester at WebA11y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="testimonial-nav next-btn" id="nextBtn" aria-label="Next testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="testimonial-dots" id="testimonialDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Features Section - Bento Box Style -->
+    <section id="features" class="section features-section">
+        <div class="container">
+            <h2 class="section-title">Our Features</h2>
+            <div class="features-grid">
+                <!-- Voice Assistant Card -->
+                <div class="feature-card bento-card">
+                    <div class="feature-icon gradient-green">
+                        <i data-lucide="mic" class="feature-icon-svg"></i>
+                    </div>
+                    <h3>Voice Assistant</h3>
+                    <p>Hands-free job search for visually impaired users with real-time voice feedback.</p>
+                    <a href="#" class="learn-more">Learn More <i data-lucide="arrow-right" class="learn-more-icon"></i></a>
+                </div>
+                
+                <!-- Accessibility First Card -->
+                <div class="feature-card bento-card">
+                    <div class="feature-icon gradient-blue">
+                        <i data-lucide="accessibility" class="feature-icon-svg"></i>
+                    </div>
+                    <h3>Accessibility First</h3>
+                    <p>WCAG compliant design ensuring smooth experience for all users.</p>
+                    <a href="#" class="learn-more">Learn More <i data-lucide="arrow-right" class="learn-more-icon"></i></a>
+                </div>
+                
+                <!-- Smart Filtering Card -->
+                <div class="feature-card bento-card">
+                    <div class="feature-icon gradient-purple">
+                        <i data-lucide="sliders" class="feature-icon-svg"></i>
+                    </div>
+                    <h3>Smart Filtering</h3>
+                    <p>Filter jobs by disability type, location, and accessibility features.</p>
+                    <a href="#" class="learn-more">Learn More <i data-lucide="arrow-right" class="learn-more-icon"></i></a>
+                </div>
+                
+                <!-- Mobile Friendly Card -->
+                <div class="feature-card bento-card">
+                    <div class="feature-icon gradient-orange">
+                        <i data-lucide="smartphone" class="feature-icon-svg"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access job listings from any device, anywhere, anytime.</p>
+                    <a href="#" class="learn-more">Learn More <i data-lucide="arrow-right" class="learn-more-icon"></i></a>
+                </div>
+                
+                <!-- Secure & Private Card -->
+                <div class="feature-card bento-card">
+                    <div class="feature-icon gradient-teal">
+                        <i data-lucide="shield-check" class="feature-icon-svg"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is protected with enterprise-grade security measures.</p>
+                    <a href="#" class="learn-more">Learn More <i data-lucide="arrow-right" class="learn-more-icon"></i></a>
+                </div>
+                
+                <!-- Community Support Card -->
+                <div class="feature-card bento-card">
+                    <div class="feature-icon gradient-pink">
+                        <i data-lucide="message-circle" class="feature-icon-svg"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Connect with other job seekers and share experiences.</p>
+                    <a href="#" class="learn-more">Learn More <i data-lucide="arrow-right" class="learn-more-icon"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Search Section -->
+    <section id="jobs" class="section jobs-section">
+        <div class="container">
+            <h2 class="section-title">Find Your Dream Job</h2>
+            
+            <div class="search-panel">
+<label for="disability-select">I am looking for a job and I am:</label>
+                
+                <select id="disability-select" style="display: none;">
+                    <option value="">All Categories</option>
+                    <option value="blind">Visually Impaired</option>
+                    <option value="deaf">Hearing Impaired</option>
+                    <option value="physical">Physically Disabled</option>
+                    <option value="other">Other / No Disability</option>
+                </select>
+                
+                <div class="disability-cards">
+                    <div class="disability-card" data-value="blind">
+                        <div class="card-icon"><i data-lucide="eye-off"></i></div>
+                        <div class="card-content"><h4>Visually Impaired</h4><p>Voice-assisted browsing</p></div>
+                        <div class="card-check"><i data-lucide="check"></i></div>
+                    </div>
+                    <div class="disability-card" data-value="deaf">
+                        <div class="card-icon"><i data-lucide="ear"></i></div>
+                        <div class="card-content"><h4>Hearing Impaired</h4><p>Visual notifications</p></div>
+                        <div class="card-check"><i data-lucide="check"></i></div>
+                    </div>
+                    <div class="disability-card" data-value="physical">
+                        <div class="card-icon"><i data-lucide="accessibility"></i></div>
+                        <div class="card-content"><h4>Physically Disabled</h4><p>Accessible job listings</p></div>
+                        <div class="card-check"><i data-lucide="check"></i></div>
+                    </div>
+                    <div class="disability-card" data-value="other">
+                        <div class="card-icon"><i data-lucide="user"></i></div>
+                        <div class="card-content"><h4>Other / No Disability</h4><p>Standard browsing</p></div>
+                        <div class="card-check"><i data-lucide="check"></i></div>
+                    </div>
+                </div>
+
+                <input type="text" id="search-input" placeholder="Type job title (e.g., Developer)...">
+                <button id="search-btn">Search Jobs</button>
+                
+                <button id="voice-btn" style="display: none;">
+                    <i class="fas fa-microphone"></i> Click to Speak
+                </button>
+            </div>
+
+<div id="job-list" class="job-list-container" aria-live="polite">
+                <p class="placeholder-text">Please select your disability above to see suitable jobs.</p>
+            </div>
+            
+            <!-- Skeleton Loader for Job Search -->
+            <div id="skeleton-loader" class="skeleton-loader">
+                <!-- Card 1 -->
+                <div class="skeleton-card">
+                    <div class="skeleton-header">
+                        <div class="skeleton-logo"></div>
+                        <div class="skeleton-title"></div>
+                    </div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-tags">
+                        <div class="skeleton-tag"></div>
+                        <div class="skeleton-tag"></div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="skeleton-card">
+                    <div class="skeleton-header">
+                        <div class="skeleton-logo"></div>
+                        <div class="skeleton-title"></div>
+                    </div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-tags">
+                        <div class="skeleton-tag"></div>
+                        <div class="skeleton-tag"></div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="skeleton-card">
+                    <div class="skeleton-header">
+                        <div class="skeleton-logo"></div>
+                        <div class="skeleton-title"></div>
+                    </div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-tags">
+                        <div class="skeleton-tag"></div>
+                        <div class="skeleton-tag"></div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="skeleton-card">
+                    <div class="skeleton-header">
+                        <div class="skeleton-logo"></div>
+                        <div class="skeleton-title"></div>
+                    </div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                    <div class="skeleton-tags">
+                        <div class="skeleton-tag"></div>
+                        <div class="skeleton-tag"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have questions? We'd love to hear from you.</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Visit Us</h4>
+                            <p>123 Accessibility Street<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Us</h4>
+                            <p>support@abilityjobs.com<br>info@abilityjobs.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Call Us</h4>
+                            <p>+1 (555) 123-4567<br>Mon - Fri: 9AM - 6PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Live Chat</h4>
+                            <p>Available 24/7<br>Quick responses</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h3>Send us a Message</h3>
+                        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name"><i class="fas fa-user"></i> Your Name</label>
+                                <input type="text" id="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i> Your Email</label>
+                                <input type="email" id="email" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                            <select id="subject">
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="jobs">Job Related</option>
+                                <option value="employer">Employer Partnership</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message"><i class="fas fa-comment-alt"></i> Your Message</label>
+                            <textarea id="message" placeholder="Type your message here..." rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <span>How do I create an account?</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Click the "Sign Up" button in the top right corner, fill in your details, and verify your email address.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Is the voice search available on mobile?</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Our voice search works on both desktop and mobile browsers. Use Chrome on Android or Safari on iOS for best results.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <span>How do employers post jobs?</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Employers can register for a free account, then click "Post a Job" from their dashboard to create and manage job listings.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Is my personal information secure?</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! We use industry-standard encryption and never share your information without your consent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fas fa-universal-access"></i> AbilityJobs
+                </div>
+                <p>Empowering differently abled individuals to find meaningful employment through technology and inclusion.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home>
+                    <li</a></li><a href="#about">About</a></li>
+                    <li><a href="#jobs">Jobs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 AbilityJobs. All rights reserved. | Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> for everyone</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
